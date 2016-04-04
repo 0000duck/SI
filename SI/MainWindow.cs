@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using SztucznaInteligencja.Containers;
 
 namespace SztucznaInteligencja
 {
-    public partial class MainWindow :Form
+    public partial class MainWindow : Form
     {
         private readonly Program _program;
         private readonly Extruder _extruder = new Extruder();
@@ -19,7 +16,7 @@ namespace SztucznaInteligencja
         private readonly Graphics _drawArea;
         private readonly SolidBrush _blueBrush = new SolidBrush(Color.Blue);
         private Lines _lines = new Lines();
-        
+
 
         public MainWindow(Program program)
         {
@@ -32,7 +29,7 @@ namespace SztucznaInteligencja
             _program = program;
             _drawArea = pictureBox1.CreateGraphics();
             _drawArea.SmoothingMode = SmoothingMode.AntiAlias;
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,7 +40,7 @@ namespace SztucznaInteligencja
             LosujBT.Select();
 
             FillAlgorithmComboBox();
-            AlgorithmComboBox.SelectedIndex = (int) Algorithms.Permutations;
+            AlgorithmComboBox.SelectedIndex = (int)Algorithms.Permutations;
         }
 
         private void openFile_Click(object sender, EventArgs e)
@@ -58,10 +55,10 @@ namespace SztucznaInteligencja
                 WriteLine("Start!");
 
                 _lines = _extruder.ExtrudeLines(_ofd.FileName);
-                
+
                 labelNazwaPliku.Text = _ofd.SafeFileName;
                 WriteLine("----");
-                
+
                 ValidateStartLineComboBox();
             }
         }
@@ -72,22 +69,22 @@ namespace SztucznaInteligencja
             WriteLine("Start!");
 
             _lines = _extruder.GetRandomLines(numberOfRandomLinesComboBox.SelectedIndex, pictureBox1.Width, pictureBox1.Height);
-            
+
             labelNazwaPliku.Text = @"Liczby Wylosowane";
             WriteLine("----");
 
             ValidateStartLineComboBox();
         }
-        
+
         private void calculate_Click(object sender, EventArgs e)
         {
-//            WriteLine("");
+            //            WriteLine("");
             _program.OnStart(this._lines);
         }
 
         private void FillAlgorithmComboBox()
         {
-            foreach (var algorithm in Enum.GetValues(( typeof(Algorithms) )))
+            foreach (var algorithm in Enum.GetValues((typeof(Algorithms))))
             {
                 AlgorithmComboBox.Items.Add(algorithm.ToString());
             }
@@ -99,7 +96,7 @@ namespace SztucznaInteligencja
             {
                 var numberOfPoints = 1;
                 if (_lines.Count > 1) numberOfPoints = _lines.Count;
-                var tmp = (byte) startLineComboBox.SelectedIndex;
+                var tmp = (byte)startLineComboBox.SelectedIndex;
                 startLineComboBox.Items.Clear();
 
                 for (var i = 0; i < numberOfPoints; i++)
@@ -119,85 +116,85 @@ namespace SztucznaInteligencja
         {
             textBox1.AppendText(text + "\n");
         }
-        
+
         private void methodComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (AlgorithmComboBox.SelectedIndex)
             {
-                case (int) Algorithms.GreedyMethod:
+                case (int)Algorithms.GreedyMethod:
                     chooseStartPointCheckBox.Show();
                     startLineComboBox.Show();
                     break;
-                case (int) Algorithms.Permutations:
+                case (int)Algorithms.Permutations:
                     chooseStartPointCheckBox.Show();
                     startLineComboBox.Show();
                     break;
-                case (int) Algorithms.Hill:
+                case (int)Algorithms.Hill:
                     chooseStartPointCheckBox.Hide();
                     startLineComboBox.Hide();
                     break;
             }
         }
 
-//        public void DrawResult(object sender, TspEventArgs args)
-//        {
-//            DrawAreaClear();
-//            DrawPoints();
-//            DrawConnection(result);
-//        }
+        //        public void DrawResult(object sender, TspEventArgs args)
+        //        {
+        //            DrawAreaClear();
+        //            DrawPoints();
+        //            DrawConnection(result);
+        //        }
 
-//        public void PrintResult(Result result)
-//        {
-//            WriteLine(string.Format("Otrzymano {0} najlepszych tras: ", result.Tour.Rows.Count));
-//            for (var i = 0; i < result.Tour.Rows.Count; i++)
-//            {
-//                for (var j = 0; j < result.Tour.Columns.Count; j++)
-//                {
-//                    textBox1.AppendText(string.Format("  P" + result.Tour.Rows[i].Field<byte>(j)));
-//                }
-//                WriteLine(string.Format(" | Droga: {0}", result.TourCost.Rows[i].Field<short>(0)));
-//            }
-//        }
+        //        public void PrintResult(Result result)
+        //        {
+        //            WriteLine(string.Format("Otrzymano {0} najlepszych tras: ", result.Tour.Rows.Count));
+        //            for (var i = 0; i < result.Tour.Rows.Count; i++)
+        //            {
+        //                for (var j = 0; j < result.Tour.Columns.Count; j++)
+        //                {
+        //                    textBox1.AppendText(string.Format("  P" + result.Tour.Rows[i].Field<byte>(j)));
+        //                }
+        //                WriteLine(string.Format(" | Droga: {0}", result.TourCost.Rows[i].Field<short>(0)));
+        //            }
+        //        }
 
 
-//        private void DrawPoints()
-//        {
-//            int ellipseDiameter = Convert.ToInt16(5);
-//
-//            for (var i = 0; i < _result.Lines.Count; i++)
-//            {
-//                _drawArea.FillEllipse(Brushes.Blue, Convert.ToInt16(_result.Lines[i].StartPoint.X) - ellipseDiameter / 2,
-//                    pictureBox1.Height - Convert.ToInt16(_result.Lines[i].StartPoint.Y) - ellipseDiameter / 2,
-//                    ellipseDiameter,
-//                    ellipseDiameter);
-//
-//                var drawString = "P " + ( i );
-//                PointF drawPoint = new Point(Convert.ToInt16(_result.Lines[i].StartPoint.X) + 10, Convert.ToInt16(pictureBox1.Height - _result.Lines[i].StartPoint.Y) - 10);
-//
-//                _drawArea.DrawString(drawString, DefaultFont, Brushes.Blue, drawPoint);
-//            }
-//        }
-//
-//        private void DrawConnection(Result result)
-//        {
-//            for (var i = 0; i < result.Tour.Columns.Count - 1; i++)
-//            {
-//
-//                var xStart = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i)].StartPoint.X);
-//                var xEnd = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i + 1)].StartPoint.X);
-//                var yStart = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i)].StartPoint.Y);
-//                var yEnd = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i + 1)].StartPoint.Y);
-//                _drawArea.DrawLine(Pens.Red, xStart, pictureBox1.Height - yStart, xEnd, pictureBox1.Height - yEnd);
-//
-//            }
-//
-//        }
-//
-//        public void DrawAreaClear()
-//        {
-//            _drawArea.Clear(pictureBox1.BackColor);
-//        }
-//
+        //        private void DrawPoints()
+        //        {
+        //            int ellipseDiameter = Convert.ToInt16(5);
+        //
+        //            for (var i = 0; i < _result.Lines.Count; i++)
+        //            {
+        //                _drawArea.FillEllipse(Brushes.Blue, Convert.ToInt16(_result.Lines[i].StartPoint.X) - ellipseDiameter / 2,
+        //                    pictureBox1.Height - Convert.ToInt16(_result.Lines[i].StartPoint.Y) - ellipseDiameter / 2,
+        //                    ellipseDiameter,
+        //                    ellipseDiameter);
+        //
+        //                var drawString = "P " + ( i );
+        //                PointF drawPoint = new Point(Convert.ToInt16(_result.Lines[i].StartPoint.X) + 10, Convert.ToInt16(pictureBox1.Height - _result.Lines[i].StartPoint.Y) - 10);
+        //
+        //                _drawArea.DrawString(drawString, DefaultFont, Brushes.Blue, drawPoint);
+        //            }
+        //        }
+        //
+        //        private void DrawConnection(Result result)
+        //        {
+        //            for (var i = 0; i < result.Tour.Columns.Count - 1; i++)
+        //            {
+        //
+        //                var xStart = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i)].StartPoint.X);
+        //                var xEnd = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i + 1)].StartPoint.X);
+        //                var yStart = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i)].StartPoint.Y);
+        //                var yEnd = Convert.ToSingle(_result.Lines[result.Tour.Rows[0].Field<byte>(i + 1)].StartPoint.Y);
+        //                _drawArea.DrawLine(Pens.Red, xStart, pictureBox1.Height - yStart, xEnd, pictureBox1.Height - yEnd);
+        //
+        //            }
+        //
+        //        }
+        //
+        //        public void DrawAreaClear()
+        //        {
+        //            _drawArea.Clear(pictureBox1.BackColor);
+        //        }
+        //
 
         public void ShowLinesInTextBox(Lines lines)
         {
@@ -218,17 +215,17 @@ namespace SztucznaInteligencja
         {
             _drawArea.Clear(pictureBox1.BackColor);
             int ellipseDiameter = Convert.ToInt16(5);
-        
+
             for (var i = 0; i < lines.Count; i++)
             {
                 _drawArea.FillEllipse(Brushes.Blue, Convert.ToInt16(lines[i].StartPoint.X) - ellipseDiameter / 2,
                     pictureBox1.Height - Convert.ToInt16(lines[i].StartPoint.Y) - ellipseDiameter / 2,
                     ellipseDiameter,
                     ellipseDiameter);
-        
-                var drawString = "P " + ( i );
+
+                var drawString = "P " + (i);
                 PointF drawPoint = new Point(Convert.ToInt16(lines[i].StartPoint.X) + 10, Convert.ToInt16(pictureBox1.Height - lines[i].StartPoint.Y) - 10);
-        
+
                 _drawArea.DrawString(drawString, DefaultFont, Brushes.Blue, drawPoint);
             }
         }

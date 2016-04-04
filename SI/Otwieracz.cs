@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.IO;
 
 namespace SztucznaInteligencja
@@ -19,7 +13,7 @@ namespace SztucznaInteligencja
         string[] zawartoscPliku;
 
 
-        public void wybierzPlik()
+        public void ChooseFile()
         {
             ofd.Filter = "DXF|*.dxf";
             if(ofd.ShowDialog() == DialogResult.OK)

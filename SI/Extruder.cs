@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 using SztucznaInteligencja.Containers;
 
 namespace SztucznaInteligencja
@@ -16,13 +14,7 @@ namespace SztucznaInteligencja
         private const string ZnacznikKoncaY = " 21";
         private const byte   LinesToSearch = 13;
 
-        private Lines _lines = new Lines();
-
-        public Lines Lines
-        {
-            get { return _lines; }
-            set { _lines = value; }
-        }
+        public Lines Lines { get; set; } = new Lines();
 
         private string[] _dxfContent;
 

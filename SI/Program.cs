@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 using SztucznaInteligencja.Containers;
 
@@ -10,7 +7,7 @@ namespace SztucznaInteligencja
 {
     public class Program
     {
-        private MainWindow _form;
+        private readonly MainWindow _form;
 //        private readonly Result _result;
 
         public Program()
@@ -23,7 +20,7 @@ namespace SztucznaInteligencja
         {
             var time = Stopwatch.StartNew();
 
-            if (_form.AlgorithmComboBox.SelectedIndex == (int) Algorithms.Permutations)
+            if (_form.AlgorithmComboBox.SelectedIndex == (int)Algorithms.Permutations)
             {
                 _form.WriteLine("Uruchamiam algorytm permutacyjny:");
                 var permutation = new PermutationsAlgorithm(lines);
@@ -31,10 +28,10 @@ namespace SztucznaInteligencja
             }
             time.Stop();
             _form.WriteLine("Algorytm zakończył działanie!");
-                _form.WriteLine("Czas obliczeń: " + time.ElapsedMilliseconds + " ms");
+            _form.WriteLine("Czas obliczeń: " + time.ElapsedMilliseconds + " ms");
 
-                _form.WriteLine("Gotowe!");
-            
+            _form.WriteLine("Gotowe!");
+
         }
 
         //        private void DrawBestPermutation()
@@ -101,7 +98,5 @@ namespace SztucznaInteligencja
         {
             return _form;
         }
-
-
     }
 }
