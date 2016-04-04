@@ -13,7 +13,7 @@
         /// <param name="disposing">prawda, jeżeli zarządzane zasoby powinny zostać zlikwidowane; Fałsz w przeciwnym wypadku.</param>
         protected override void Dispose(bool disposing)
         {
-            if(disposing && (components != null))
+            if (disposing && (components != null))
             {
                 components.Dispose();
             }
