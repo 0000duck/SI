@@ -1,4 +1,5 @@
-﻿using System;
+﻿//commit all
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 using SztucznaInteligencja.Containers;
@@ -8,7 +9,7 @@ namespace SztucznaInteligencja
     public class Program
     {
         private readonly MainWindow _form;
-//        private readonly Result _result;
+        private readonly Result _result;
 
         public Program()
         {
@@ -18,6 +19,7 @@ namespace SztucznaInteligencja
 
         public void OnStart(Lines lines)
         {
+
             var time = Stopwatch.StartNew();
 
             if (_form.AlgorithmComboBox.SelectedIndex == (int)Algorithms.Permutations)

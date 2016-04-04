@@ -54,7 +54,10 @@ namespace SztucznaInteligencja
         private Lines FindLines()
         {
             var lines = new Lines();
-            double xStart = 0, yStart = 0, xEnd = 0, yEnd = 0;
+            double xStart = 0, 
+                    yStart = 0, 
+                    xEnd = 0,
+                    yEnd = 0;
 
             for (var i = 0; i < _dxfContent.Length; i++)                 //w każdej iteracji podaje do pętli kolejny wiersz z tablicy zawierającej zawartość pliku *.dxf
             {

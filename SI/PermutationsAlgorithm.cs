@@ -1,29 +1,36 @@
 ﻿using System;
 using System.Data;
+using SI;
 using SztucznaInteligencja.Containers;
 
 namespace SztucznaInteligencja
 {
-    internal class PermutationsAlgorithm
+    internal class PermutationsAlgorithm : Algorithm
     {
         private double _lowestCountedCost = int.MaxValue;
 
 
         private int[] _tour;
         private int _linesCount;
-       
+        private Result _result;
+
 
         public PermutationsAlgorithm(Lines lines)
         {
             Execute(lines);
         }
 
-        private void Execute(Lines lines)
+        public override void Execute(Lines lines)
         {
-            var result = InitializeProperties(lines);
+            _result = InitializeProperties(lines);
 
-            CalculatePermutations(result, lines);
-            SortCostTable(result);
+            CalculatePermutations(_result, lines);
+            SortCostTable(_result);
+        }
+
+        public override Result GetResult()
+        {
+            return _result;
         }
 
         private Result InitializeProperties(Lines lines)
