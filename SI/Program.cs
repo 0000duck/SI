@@ -1,36 +1,39 @@
-﻿//commit all and sync
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using SI;
 using SztucznaInteligencja.Containers;
 
 namespace SztucznaInteligencja
 {
     public class Program
     {
-        private readonly MainWindow _form;
-        private readonly Result _result;
+        private readonly MainForm _form;
+        private Result _result;
 
         public Program()
         {
-            _form = new MainWindow(this);
+            _form = new MainForm(this);
 
         }
 
-        public void OnStart(Lines lines)
+        public void OnStart(Lines lines, Algorithm algorithm)
         {
-
-            var time = Stopwatch.StartNew();
-
-            if (_form.AlgorithmComboBox.SelectedIndex == (int)Algorithms.Permutations)
+            
+            switch (_form.AlgorithmComboBox.SelectedIndex)
             {
-                _form.WriteLine("Uruchamiam algorytm permutacyjny:");
-                var permutation = new PermutationsAlgorithm(lines);
-
+                case 0:
+                    _form.WriteLine("Uruchamiam algorytm permutacyjny:");
+                    break;
             }
+            var time = Stopwatch.StartNew();
+            algorithm.Execute(lines);
+
             time.Stop();
             _form.WriteLine("Algorytm zakończył działanie!");
             _form.WriteLine("Czas obliczeń: " + time.ElapsedMilliseconds + " ms");
+
+            _result = algorithm.GetResult();
 
             _form.WriteLine("Gotowe!");
 
@@ -96,7 +99,7 @@ namespace SztucznaInteligencja
             Application.Run(program.GetFormHandler());
         }
 
-        public MainWindow GetFormHandler()
+        public MainForm GetFormHandler()
         {
             return _form;
         }

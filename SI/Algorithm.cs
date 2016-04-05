@@ -2,7 +2,7 @@
 
 namespace SI
 {
-    abstract class Algorithm
+    public abstract class Algorithm
     {
         public abstract void Execute(Lines lines);
 

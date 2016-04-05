@@ -5,11 +5,13 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using SI;
+using SI.Containers;
 using SztucznaInteligencja.Containers;
 
 namespace SztucznaInteligencja
 {
-    public partial class MainWindow : Form
+    public partial class MainForm : Form
     {
         private readonly Program _program;
         private readonly Extruder _extruder = new Extruder();
@@ -21,7 +23,7 @@ namespace SztucznaInteligencja
         private Lines _lines = new Lines();
 
 
-        public MainWindow(Program program)
+        public MainForm(Program program)
         {
             InitializeComponent();
 
@@ -81,8 +83,16 @@ namespace SztucznaInteligencja
 
         private void calculate_Click(object sender, EventArgs e)
         {
-            //            WriteLine("");
-            _program.OnStart(this._lines);
+            Algorithm algorithm;
+            switch (AlgorithmComboBox.SelectedIndex)
+            {
+                case 0:
+                    algorithm = new PermutationsAlgorithm(_lines);
+                    break;
+                default:
+                    throw new NotImplementedException("Default in algorithm switch");
+            }
+            _program.OnStart(this._lines, algorithm);
         }
 
         private void FillAlgorithmComboBox()

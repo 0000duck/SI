@@ -1,6 +1,6 @@
 ﻿namespace SztucznaInteligencja
 {
-    partial class MainWindow
+    partial class MainForm
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -165,7 +165,7 @@
             this.costLabel.TabIndex = 10;
             this.costLabel.Text = "Cost";
             // 
-            // MainWindow
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,7 +183,7 @@
             this.Controls.Add(this.openFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "MainWindow";
+            this.Name = "MainForm";
             this.Text = "Sztuczna Inteligencja";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
