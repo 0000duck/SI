@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SztucznaInteligencja.Containers
 {
@@ -13,6 +14,8 @@ namespace SztucznaInteligencja.Containers
             get { return _disances; }
             set { _disances = value; }
         }
+
+        public double Length => Math.Sqrt(Math.Pow(EndPoint.X - StartPoint.X, 2) + Math.Pow(EndPoint.Y - StartPoint.Y, 2));
 
 
         public Line(double xStart, double xEnd, double yStart, double yEnd)
