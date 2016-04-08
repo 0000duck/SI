@@ -9,7 +9,7 @@ namespace SztucznaInteligencja.Containers
         {
 
         }
-        
+
         public void CalculateDistances()
         {
             foreach (var line in this)
@@ -64,4 +64,6 @@ namespace SztucznaInteligencja.Containers
         }
 
     }
+
+
 }

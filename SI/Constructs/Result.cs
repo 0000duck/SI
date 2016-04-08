@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics.CodeAnalysis;
 
 namespace SztucznaInteligencja.Containers
 {
     public class Result
     {
-
-        public DataTable Tour { get; private set; }
-        public List<double> Tour1 { get; private set; }
-        public DataTable TourCost { get; private set; }
-        public List<double> TourCost1 { get; private set; }
-
+//        public Lines Lines { get; set; }
+//        public double[,] ConnectionCost { get; set; }
+        public DataTable Tour { get; set; }
+        public DataTable TourCost { get; set; }
 
         public Result(int linesCount)
         {
@@ -21,7 +17,7 @@ namespace SztucznaInteligencja.Containers
             
             for (var i = 0; i < linesCount; i++)
             {
-                Tour.Columns.Add(i.ToString(), typeof(byte));
+                Tour.Columns.Add(i.ToString(), typeof(Byte));
             }
 
             TourCost.Columns.Add("cost", typeof(short));
@@ -39,23 +35,6 @@ namespace SztucznaInteligencja.Containers
             Tour.Rows.Add(workRow);
         }
 
-        public void SortCostTable()
-        {
-            double tmpLowestValue = TourCost.Rows[TourCost.Rows.Count - 1].Field<short>(0);
-            var loop = true;
 
-            while (loop)
-            {
-                if (TourCost.Rows[0].Field<short>(0) > tmpLowestValue)
-                {
-                    Tour.Rows[0].Delete();
-                    TourCost.Rows[0].Delete();
-                }
-                else
-                {
-                    loop = false;
-                }
-            }
-        }
     }
 }

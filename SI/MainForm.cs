@@ -229,7 +229,7 @@ namespace SztucznaInteligencja
 
         public void DrawLines(Lines lines)
         {
-            ClearDrawArea();
+            _drawArea.Clear(pictureBox1.BackColor);
             int ellipseDiameter = Convert.ToInt16(5);
 
             for (var i = 0; i < lines.Count; i++)
@@ -245,25 +245,5 @@ namespace SztucznaInteligencja
                 _drawArea.DrawString(drawString, DefaultFont, Brushes.Blue, drawPoint);
             }
         }
-
-        private void ClearDrawArea()
-        {
-            _drawArea.Clear(pictureBox1.BackColor);
-        }
-
-        public void DrawResult(Result result)
-        {
-            DrawLines(_lines);
-
-        }
-
-//        private void DrawConnections(Result result)
-//        {
-//            for (int i = 0; i < result.Tour.Rows.Count; i++)
-//            {
-//                _drawArea.DrawLine(_lines);
-//            }
-//        }
-//
     }
 }
