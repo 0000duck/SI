@@ -1,4 +1,4 @@
-﻿using SztucznaInteligencja.Containers;
+﻿using SI.Constructs;
 
 namespace SI
 {

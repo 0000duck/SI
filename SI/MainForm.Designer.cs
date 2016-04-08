@@ -1,4 +1,4 @@
-﻿namespace SztucznaInteligencja
+﻿namespace SI
 {
     partial class MainForm
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SztucznaInteligencja.Containers
+namespace SI.Constructs
 {
     public class Permutation : List<double>
     {

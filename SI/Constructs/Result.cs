@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics.CodeAnalysis;
 
-namespace SztucznaInteligencja.Containers
+namespace SI.Constructs
 {
     public class Result
     {

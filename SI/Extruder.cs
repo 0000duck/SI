@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using SztucznaInteligencja.Containers;
+using SI.Constructs;
 
-namespace SztucznaInteligencja
+namespace SI
 {        
     public delegate void OnCreatedLinesHandler(Lines lines);
 

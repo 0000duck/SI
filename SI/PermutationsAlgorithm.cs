@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data;
-using SI;
-using SztucznaInteligencja.Containers;
+using SI.Constructs;
 
-namespace SztucznaInteligencja
+namespace SI
 {
     internal class PermutationsAlgorithm : Algorithm
     {

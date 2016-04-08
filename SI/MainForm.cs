@@ -1,17 +1,10 @@
-﻿//dupa
-
-using System;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using SI;
-using SI.Containers;
-using SztucznaInteligencja.Containers;
+using SI.Constructs;
 
-namespace SztucznaInteligencja
+namespace SI
 {
     public partial class MainForm : Form
     {

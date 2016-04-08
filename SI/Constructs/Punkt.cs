@@ -1,4 +1,4 @@
-namespace SztucznaInteligencja.Containers
+namespace SI.Constructs
 {
     public class Punkt
     {

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using SI;
-using SztucznaInteligencja.Containers;
+using SI.Constructs;
 
-namespace SztucznaInteligencja
+namespace SI
 {
     public class Program
     {

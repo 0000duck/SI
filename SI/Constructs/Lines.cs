@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SztucznaInteligencja.Containers
+namespace SI.Constructs
 {
     public class Lines : List<Line>
     {

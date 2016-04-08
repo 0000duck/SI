@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SztucznaInteligencja.Containers
+namespace SI.Constructs
 {
     public class Permutations : List<Permutation>
     {
