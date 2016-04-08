@@ -66,6 +66,7 @@ namespace SztucznaInteligencja
 
                 ValidateStartLineComboBox();
             }
+            GC.Collect();
         }
 
         private void LosujBT_Click(object sender, EventArgs e)

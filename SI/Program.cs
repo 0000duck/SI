@@ -8,37 +8,51 @@ namespace SztucznaInteligencja
 {
     public class Program
     {
-        private readonly MainForm _form;
+        public readonly MainForm Form;
         private Result _result;
 
         public Program()
         {
-            _form = new MainForm(this);
+            Form = new MainForm(this);
 
         }
 
         public void OnStart(Lines lines, Algorithm algorithm)
         {
             
-            switch (_form.AlgorithmComboBox.SelectedIndex)
+            switch (Form.AlgorithmComboBox.SelectedIndex)
             {
                 case 0:
-                    _form.WriteLine("Uruchamiam algorytm permutacyjny:");
+                    Form.WriteLine("Uruchamiam algorytm permutacyjny:");
                     break;
             }
             var time = Stopwatch.StartNew();
             algorithm.Execute(lines);
 
             time.Stop();
-            _form.WriteLine("Algorytm zakończył działanie!");
-            _form.WriteLine("Czas obliczeń: " + time.ElapsedMilliseconds + " ms");
+            Form.WriteLine("Algorytm zakończył działanie!");
+            Form.WriteLine("Czas obliczeń: " + time.ElapsedMilliseconds + " ms");
 
             _result = algorithm.GetResult();
 
-            _form.WriteLine("Gotowe!");
+            Form.WriteLine("Gotowe!");
 
         }
 
+        /// <summary>
+        /// Główny punkt wejścia dla aplikacji.
+        /// </summary>
+        [STAThread]
+        private static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            var program = new Program();
+
+            Application.Run(program.Form);
+        }
+        
         //        private void DrawBestPermutation()
         //        {
         //            for (var i = 0; i < _tours.Columns.Count - 1; i++)
@@ -85,23 +99,6 @@ namespace SztucznaInteligencja
         //
         //        }
 
-        /// <summary>
-        /// Główny punkt wejścia dla aplikacji.
-        /// </summary>
-        [STAThread]
-        private static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
 
-            var program = new Program();
-
-            Application.Run(program.GetFormHandler());
-        }
-
-        public MainForm GetFormHandler()
-        {
-            return _form;
-        }
     }
 }
