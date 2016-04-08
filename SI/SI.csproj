@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
     <Compile Include="Constructs\Algorithms.cs" />
+    <Compile Include="Constructs\Permutation.cs" />
+    <Compile Include="Constructs\Permutations.cs" />
     <Compile Include="Extruder.cs" />
     <Compile Include="HCloner.cs" />
     <Compile Include="IDisplay.cs" />

@@ -13,6 +13,8 @@ namespace SztucznaInteligencja
         private int[] _tour;
         private int _linesCount;
         private Result _result;
+        private Permutations _permutations;
+
 
 
         public PermutationsAlgorithm(Lines lines)
@@ -25,7 +27,7 @@ namespace SztucznaInteligencja
             _result = InitializeProperties(lines);
 
             CalculatePermutations(_result, lines);
-            SortCostTable(_result);
+            _result.SortCostTable();
         }
 
         public override Result GetResult()
@@ -36,6 +38,9 @@ namespace SztucznaInteligencja
         private Result InitializeProperties(Lines lines)
         {
             _linesCount = lines.Count;
+
+            _permutations = new Permutations(_linesCount);
+
             var result = new Result(_linesCount);
 
             _tour = new int[_linesCount + 1];
@@ -113,25 +118,5 @@ namespace SztucznaInteligencja
 
             return costOfPermutation;
         }
-
-        private void SortCostTable(Result result)
-        {
-            double tmpLowestValue = result.TourCost.Rows[result.TourCost.Rows.Count - 1].Field<short>(0);
-            var loop = true;
-
-            while (loop)
-            {
-                if (result.TourCost.Rows[0].Field<short>(0) > tmpLowestValue)
-                {
-                    result.Tour.Rows[0].Delete();
-                    result.TourCost.Rows[0].Delete();
-                }
-                else
-                {
-                    loop = false;
-                }
-            }
-        }
-
     }
 }

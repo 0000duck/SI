@@ -36,6 +36,7 @@ namespace SztucznaInteligencja
             _result = algorithm.GetResult();
 
             Form.WriteLine("Gotowe!");
+            Form.DrawResult(_result);
 
         }
 
