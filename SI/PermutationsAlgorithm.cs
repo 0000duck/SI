@@ -5,7 +5,7 @@ namespace SI
 {
     internal class PermutationsAlgorithm : Algorithm
     {
-        private double _lowestCountedCost = int.MaxValue;
+        private double _lowestCost = int.MaxValue;
 
 
         private int[] _tour;
@@ -17,7 +17,9 @@ namespace SI
 
         public PermutationsAlgorithm(Lines lines)
         {
-            Execute(lines);
+            _linesCount = lines.Count;
+            _permutations = new Permutations(_linesCount);
+
         }
 
         public override void Execute(Lines lines)
@@ -25,7 +27,11 @@ namespace SI
             _result = InitializeProperties(lines);
 
             CalculatePermutations(_result, lines);
+
             _result.SortCostTable();
+
+            _permutations.Trim();
+
         }
 
         public override Result GetResult()
@@ -35,9 +41,6 @@ namespace SI
 
         private Result InitializeProperties(Lines lines)
         {
-            _linesCount = lines.Count;
-
-            _permutations = new Permutations(_linesCount);
 
             var result = new Result(_linesCount);
 
@@ -55,7 +58,7 @@ namespace SI
             while (true)
             {
                 var tmpPermutationCost = CountCostsOfPermutations(lines);
-                if (tmpPermutationCost <= _lowestCountedCost) AddPermutation(tmpPermutationCost, result);
+                if (tmpPermutationCost <= _lowestCost) AddPermutation(tmpPermutationCost, result);
 
                 var i = _linesCount - 1;
 
@@ -92,7 +95,14 @@ namespace SI
 
         private void AddPermutation(double tmpPermutationCost, Result result)
         {
-            _lowestCountedCost = tmpPermutationCost;
+            var permutation = new Permutation();
+            for (int i=1;i<_tour.Length;i++)
+            {
+                permutation.Add(_tour[i]);
+                permutation.Cost = tmpPermutationCost;
+            }
+            _permutations.Add(permutation);
+
 
             var workRow = result.Tour.NewRow();
             for (var signNumber = 0; signNumber < _linesCount; signNumber++)

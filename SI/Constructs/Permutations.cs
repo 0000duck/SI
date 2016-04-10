@@ -5,7 +5,7 @@ namespace SI.Constructs
 {
     public class Permutations : List<Permutation>
     {
-        private int _permutationsLength;
+        private readonly int _permutationsLength;
 
         public Permutations(int permutationsLength)
         {
@@ -19,6 +19,25 @@ namespace SI.Constructs
             else
             {
                 throw new InvalidDataException("Permutations have wrong length");
+            }
+        }
+
+        public void Trim()
+        {
+            this.Sort();
+            var tmpCost = this[this.Count-1].Cost;
+            var loop = true;
+
+            while (loop)
+            {
+                if (this[0].Cost > tmpCost)
+                {
+                    this.RemoveAt(0);
+                }
+                else
+                {
+                    loop = false;
+                }
             }
         }
     }
