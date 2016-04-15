@@ -7,7 +7,6 @@ namespace SI
     {
         private double _lowestCost = int.MaxValue;
 
-
         private int[] _tour;
         private int _linesCount;
         private Result _result;

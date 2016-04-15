@@ -9,11 +9,10 @@ namespace SI.Constructs
 
         public int CompareTo(Permutation other)
         {
-            var roznica = this.Cost - other.Cost;
 
-            if (roznica == 0) return (int) roznica;
+            if (Math.Abs(this.Cost - other.Cost) < 0.01) return 0;
 
-            return (int) (roznica >= 0 ? 1 : -1);
+            return (int)(this.Cost > other.Cost ? 1 : -1);
         }
     }
 }

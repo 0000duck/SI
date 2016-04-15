@@ -7,9 +7,7 @@ namespace SI.Constructs
     {
 
         public DataTable Tour { get; private set; }
-        public List<double> Tour1 { get; private set; }
         public DataTable TourCost { get; private set; }
-        public List<double> TourCost1 { get; private set; }
 
 
         public Result(int linesCount)

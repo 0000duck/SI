@@ -11,7 +11,8 @@ namespace SI
         private readonly Program _program;
         private readonly Extruder _extruder = new Extruder();
 
-        private readonly OpenFileDialog _ofd = new OpenFileDialog { Filter = @"DXF|*.dxf", InitialDirectory = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki" };
+        private readonly OpenFileDialog _ofd = new OpenFileDialog { Filter = @"DXF|*.dxf",
+            InitialDirectory = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki" };
 
         private readonly Graphics _drawArea;
         private readonly SolidBrush _blueBrush = new SolidBrush(Color.Blue);
@@ -46,11 +47,11 @@ namespace SI
         private void openFile_Click(object sender, EventArgs e)
         {
 
-            //ofd.FileName = "D:\\Sylikon\\NajAktualne pliki do pracy\\5502_75691B.dxf";
-            //ofd.OpenFile();
+            _ofd.FileName = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki\07.dxf";
+            _ofd.OpenFile();
 
-            if (_ofd.ShowDialog() == DialogResult.OK)
-            {
+//            if (_ofd.ShowDialog() == DialogResult.OK)
+//            {
                 textBox1.Clear();
                 WriteLine("Start!");
 
@@ -60,7 +61,7 @@ namespace SI
                 WriteLine("----");
 
                 ValidateStartLineComboBox();
-            }
+//            }
             GC.Collect();
         }
 
