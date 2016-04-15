@@ -35,7 +35,7 @@ namespace SI.Constructs
             Tour.Rows.Add(workRow);
         }
 
-        public void SortCostTable()
+        public void Trim()
         {
             double tmpLowestValue = TourCost.Rows[TourCost.Rows.Count - 1].Field<short>(0);
             var loop = true;

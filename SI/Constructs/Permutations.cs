@@ -25,14 +25,14 @@ namespace SI.Constructs
         public void Trim()
         {
             this.Sort();
-            var tmpCost = this[this.Count-1].Cost;
+            var tmpCost = this[0].Cost;
             var loop = true;
 
             while (loop)
             {
-                if (this[0].Cost > tmpCost)
+                if (this[this.Count-1].Cost > tmpCost)
                 {
-                    this.RemoveAt(0);
+                    this.RemoveAt(this.Count-1);
                 }
                 else
                 {

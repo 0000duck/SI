@@ -27,7 +27,7 @@ namespace SI
 
             CalculatePermutations(_result, lines);
 
-            _result.SortCostTable();
+            _result.Trim();
 
             _permutations.Trim();
 
@@ -57,7 +57,11 @@ namespace SI
             while (true)
             {
                 var tmpPermutationCost = CountCostsOfPermutations(lines);
-                if (tmpPermutationCost <= _lowestCost) AddPermutation(tmpPermutationCost, result);
+                if (tmpPermutationCost <= _lowestCost)
+                {
+                    AddPermutation(tmpPermutationCost, result);
+                    _lowestCost = tmpPermutationCost;
+                }
 
                 var i = _linesCount - 1;
 
