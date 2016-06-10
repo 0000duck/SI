@@ -50,6 +50,7 @@
     <Compile Include="Constructs\Algorithms.cs" />
     <Compile Include="Constructs\Permutation.cs" />
     <Compile Include="Constructs\Permutations.cs" />
+    <Compile Include="Exceptions\NoFileException.cs" />
     <Compile Include="Extruder.cs" />
     <Compile Include="Constructs\Line.cs" />
     <Compile Include="Constructs\Lines.cs" />

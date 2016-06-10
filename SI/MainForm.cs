@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using SI.Constructs;
+using SI.Exceptions;
 
 namespace SI
 {
@@ -89,7 +90,27 @@ namespace SI
                 default:
                     throw new NotImplementedException("Default in algorithm switch");
             }
-            _program.OnStart(this._lines, algorithm);
+
+            try
+            {
+                if (this._lines.Count == 0)
+                {
+                    throw new NoFileException();
+                }
+                else
+                {
+                _program.OnStart(this._lines, algorithm);
+
+                }
+            }
+            catch (NoFileException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            
+             
+            
+            
         }
 
         private void FillAlgorithmComboBox()
@@ -221,7 +242,7 @@ namespace SI
             }
         }
 
-        public void DrawLines(Lines lines)
+        private void DrawLines(Lines lines)
         {
             ClearDrawArea();
             int ellipseDiameter = Convert.ToInt16(5);
@@ -249,6 +270,11 @@ namespace SI
         {
             DrawLines(_lines);
 
+        }
+
+        public void DrawConnections()
+        {
+            throw new NotImplementedException("Draw Connections");
         }
 
 //        private void DrawConnections(Result result)

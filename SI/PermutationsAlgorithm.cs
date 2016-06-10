@@ -18,7 +18,6 @@ namespace SI
         {
             _linesCount = lines.Count;
             _permutations = new Permutations(_linesCount);
-
         }
 
         public override void Execute(Lines lines)

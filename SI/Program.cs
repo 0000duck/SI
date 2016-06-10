@@ -18,15 +18,17 @@ namespace SI
 
         public void OnStart(Lines lines, Algorithm algorithm)
         {
-            
+            var time = Stopwatch.StartNew();
+
+            algorithm.Execute(lines);
+
             switch (Form.AlgorithmComboBox.SelectedIndex)
             {
                 case 0:
                     Form.WriteLine("Uruchamiam algorytm permutacyjny:");
                     break;
             }
-            var time = Stopwatch.StartNew();
-            algorithm.Execute(lines);
+            
 
             time.Stop();
             Form.WriteLine("Algorytm zakończył działanie!");

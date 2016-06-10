@@ -17,7 +17,10 @@ namespace SI.Constructs
 
         public double Length => Math.Sqrt(Math.Pow(EndPoint.X - StartPoint.X, 2) + Math.Pow(EndPoint.Y - StartPoint.Y, 2));
 
-
+        public Line()
+        {
+            
+        }
         public Line(double xStart, double xEnd, double yStart, double yEnd)
         {
             StartPoint = new Punkt(xStart, yStart);

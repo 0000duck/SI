@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 using SI.Constructs;
 
 namespace SI
@@ -59,43 +60,58 @@ namespace SI
                     xEnd = 0,
                     yEnd = 0;
 
-            for (var i = 0; i < _dxfContent.Length; i++)                 //w każdej iteracji podaje do pętli kolejny wiersz z tablicy zawierającej zawartość pliku *.dxf
+            try
             {
-                if (_dxfContent[i] == "SILIKON" || _dxfContent[i] == "Silikon" || _dxfContent[i] == "silikon")      //pętla szuka numerów lini z nazwą warstwy tzn szukamy X1
+                for (var i = 0; i < _dxfContent.Length; i++)
+                    //w każdej iteracji podaje do pętli kolejny wiersz z tablicy zawierającej zawartość pliku *.dxf
                 {
-                    for (var j = i; j < i + LinesToSearch; j++)                                         //po znalezieniu warstwy szukam wystapienia " 10" 
-                    {                                                                                 //oznaczajacego wspolrzedna X0 i pobieram nastepny wiersz
-                        if (_dxfContent[j] == ZnacznikPoczatkuX)
+                    if (_dxfContent[i] == "SILIKON" || _dxfContent[i] == "Silikon" || _dxfContent[i] == "silikon")
+                        //pętla szuka numerów lini z nazwą warstwy tzn szukamy X1
+                    {
+                        for (var j = i; j < i + LinesToSearch; j++) //po znalezieniu warstwy szukam wystapienia " 10" 
                         {
-                            xStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
-                        }
-                        if (_dxfContent[j] == ZnacznikKoncaX)                                               //wartość " 11" to X1 
-                        {
-                            xEnd = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
-                        }
-                        if (_dxfContent[j] == ZnacznikPoczatkuY)                                            //wartość " 20" to Y0
-                        {
-                            yStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
-                        }
-                        if (_dxfContent[j] == ZnacznikKoncaY)                                               //wartość " 21" to Y1
-                        {
-                            yEnd = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
-                            lines.Add(new Line(xStart, xEnd, yStart, yEnd));
-                        }
+                            //oznaczajacego wspolrzedna X0 i pobieram nastepny wiersz
+                            if (_dxfContent[j] == ZnacznikPoczatkuX)
+                            {
+                                xStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
+                            }
+                            if (_dxfContent[j] == ZnacznikKoncaX) //wartość " 11" to X1 
+                            {
+                                xEnd = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
+                            }
+                            if (_dxfContent[j] == ZnacznikPoczatkuY) //wartość " 20" to Y0
+                            {
+                                yStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
+                            }
+                            if (_dxfContent[j] == ZnacznikKoncaY) //wartość " 21" to Y1
+                            {
+                                yEnd = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
+                                lines.Add(new Line(xStart, xEnd, yStart, yEnd));
+                            }
 
+                        }
                     }
                 }
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                MessageBox.Show(@"Najpierw otwórz plik");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex.Message));
+            }
             return lines;
+
         }
 
-//        public Result GetResult()
-//        {
-//            var result = new Result(Lines.Count);
-////            result.Calculate();
-//            return result;
-//        }
-//
+        //        public Result GetResult()
+        //        {
+        //            var result = new Result(Lines.Count);
+        ////            result.Calculate();
+        //            return result;
+        //        }
+        //
 
         public Lines GetRandomLines(int countOfLines, int graphWidth, int graphHeight)
         {
