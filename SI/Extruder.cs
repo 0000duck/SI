@@ -10,7 +10,7 @@ namespace SI
     internal class Extruder
     {
         private const string ZnacznikPoczatkuX = " 10";
-        private const string ZnacznikKoncaX = " 11";
+        private const string ZnacznikKoncaX = " 11";//wartość " 11" to X1
         private const string ZnacznikPoczatkuY = " 20";
         private const string ZnacznikKoncaY = " 21";
         private const byte   LinesToSearch = 13;
@@ -75,15 +75,15 @@ namespace SI
                             {
                                 xStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
                             }
-                            if (_dxfContent[j] == ZnacznikKoncaX) //wartość " 11" to X1 
+                            if (_dxfContent[j] == ZnacznikKoncaX)  
                             {
                                 xEnd = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
                             }
-                            if (_dxfContent[j] == ZnacznikPoczatkuY) //wartość " 20" to Y0
+                            if (_dxfContent[j] == ZnacznikPoczatkuY) 
                             {
                                 yStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
                             }
-                            if (_dxfContent[j] == ZnacznikKoncaY) //wartość " 21" to Y1
+                            if (_dxfContent[j] == ZnacznikKoncaY) 
                             {
                                 yEnd = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
                                 lines.Add(new Line(xStart, xEnd, yStart, yEnd));

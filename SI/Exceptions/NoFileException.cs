@@ -10,22 +10,24 @@ namespace SI.Exceptions
     class NoFileException : Exception
     {
         private string _message;
+        public override string Message
+        {
+            get
+            {
+                return _message + " Exception";
+            }
+        }
 
         public NoFileException()
         {
             _message = "No File";
         }
+
         public NoFileException(string message)
         {
             _message = message;
         }
 
-        public override string Message
-        {
-            get
-            {
-                return _message+ " Exception";
-            }
-        }
+
     }
 }

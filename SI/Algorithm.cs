@@ -4,8 +4,12 @@ namespace SI
 {
     public abstract class Algorithm
     {
+        protected Result _result;
         public abstract void Execute(Lines lines);
 
-        public abstract Result GetResult();
+        public virtual Result GetResult()
+        {
+            return _result;
+        }
     }
 }

@@ -12,8 +12,11 @@ namespace SI
         private readonly Program _program;
         private readonly Extruder _extruder = new Extruder();
 
-        private readonly OpenFileDialog _ofd = new OpenFileDialog { Filter = @"DXF|*.dxf",
-            InitialDirectory = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki" };
+        private readonly OpenFileDialog _ofd = new OpenFileDialog
+        {
+            Filter = @"DXF|*.dxf",
+            InitialDirectory = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki"
+        };
 
         private readonly Graphics _drawArea;
         private readonly SolidBrush _blueBrush = new SolidBrush(Color.Blue);
@@ -51,18 +54,18 @@ namespace SI
             _ofd.FileName = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki\07.dxf";
             _ofd.OpenFile();
 
-//            if (_ofd.ShowDialog() == DialogResult.OK)
-//            {
-                textBox1.Clear();
-                WriteLine("Start!");
+            //            if (_ofd.ShowDialog() == DialogResult.OK)
+            //            {
+            textBox1.Clear();
+            WriteLine("Start!");
 
-                _lines = _extruder.ExtrudeLines(_ofd.FileName);
+            _lines = _extruder.ExtrudeLines(_ofd.FileName);
 
-                labelNazwaPliku.Text = _ofd.SafeFileName;
-                WriteLine("----");
+            labelNazwaPliku.Text = _ofd.SafeFileName;
+            WriteLine("----");
 
-                ValidateStartLineComboBox();
-//            }
+            ValidateStartLineComboBox();
+            //            }
             GC.Collect();
         }
 
@@ -82,35 +85,34 @@ namespace SI
         private void calculate_Click(object sender, EventArgs e)
         {
             Algorithm algorithm;
-            switch (AlgorithmComboBox.SelectedIndex)
-            {
-                case 0:
-                    algorithm = new PermutationsAlgorithm(_lines);
-                    break;
-                default:
-                    throw new NotImplementedException("Default in algorithm switch");
-            }
-
             try
             {
+                switch (AlgorithmComboBox.SelectedIndex)
+                {
+                    case 0:
+                        algorithm = new PermutationsAlgorithm(_lines);
+                        break;
+                    default:
+                        throw new NotImplementedException("This algorithm will be implemented soon.");
+                }
+            
                 if (this._lines.Count == 0)
                 {
                     throw new NoFileException();
                 }
                 else
                 {
-                _program.OnStart(this._lines, algorithm);
-
+                    _program.OnStart(this._lines, algorithm);
                 }
             }
             catch (NoFileException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-            
-             
-            
-            
+            catch (NotImplementedException exception)
+            {
+                MessageBox.Show(exception.Message.ToString());
+            }
         }
 
         private void FillAlgorithmComboBox()
@@ -277,13 +279,13 @@ namespace SI
             throw new NotImplementedException("Draw Connections");
         }
 
-//        private void DrawConnections(Result result)
-//        {
-//            for (int i = 0; i < result.Tour.Rows.Count; i++)
-//            {
-//                _drawArea.DrawLine(_lines);
-//            }
-//        }
-//
+        //        private void DrawConnections(Result result)
+        //        {
+        //            for (int i = 0; i < result.Tour.Rows.Count; i++)
+        //            {
+        //                _drawArea.DrawLine(_lines);
+        //            }
+        //        }
+        //
     }
 }

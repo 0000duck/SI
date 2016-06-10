@@ -23,14 +23,14 @@ namespace SI.Constructs
             TourCost.Columns.Add("cost", typeof(short));
         }
 
-        public void AddTour(double tourCost, int [] variablesToPermute)
+        public void AddTour(double tourCost, int [] tour)
         {
             TourCost.Rows.Add(tourCost);
 
             var workRow = Tour.NewRow();
-            for (var signNumber = 0; signNumber < variablesToPermute.Length - 1; signNumber++)
+            for (var signNumber = 0; signNumber < tour.Length - 1; signNumber++)
             {
-                workRow[signNumber] = variablesToPermute[signNumber + 1];
+                workRow[signNumber] = tour[signNumber + 1];
             }
             Tour.Rows.Add(workRow);
         }
