@@ -17,7 +17,6 @@ namespace SI
         private readonly OpenFileDialog _ofd = new OpenFileDialog
         {
             Filter = @"DXF|*.dxf",
-            InitialDirectory = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki"
         };
 
         private readonly Graphics _drawArea;
@@ -52,23 +51,20 @@ namespace SI
 
         private void openFile_Click(object sender, EventArgs e)
         {
+            if (_ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Clear();
+                WriteLine("Start!");
 
-            _ofd.FileName = @"C:\Users\Michał\Documents\Visual Studio 2013\Projects\SztucznaInteligencja\SztucznaInteligencja\pliki\07.dxf";
-            _ofd.OpenFile();
+                _lines = _extruder.ExtrudeLines(_ofd.FileName);
 
-            //            if (_ofd.ShowDialog() == DialogResult.OK)
-            //            {
-            textBox1.Clear();
-            WriteLine("Start!");
+                labelNazwaPliku.Text = _ofd.SafeFileName;
+                WriteLine("----");
 
-            _lines = _extruder.ExtrudeLines(_ofd.FileName);
-
-            labelNazwaPliku.Text = _ofd.SafeFileName;
-            WriteLine("----");
-
-            ValidateStartLineComboBox();
-            //            }
-            GC.Collect();
+                ValidateStartLineComboBox();
+                //            }
+                GC.Collect();
+            }
         }
 
         private void LosujBT_Click(object sender, EventArgs e)
@@ -248,13 +244,14 @@ namespace SI
 
         private void DrawLines(Lines lines)
         {
+            _lines = lines;
             ClearDrawArea();
             int ellipseDiameter = Convert.ToInt16(5);
 
             for (var i = 0; i < lines.Count; i++)
             {
-                _drawArea.FillEllipse(Brushes.Blue, Convert.ToInt16(lines[i].StartPoint.X) - ellipseDiameter / 2,
-                    pictureBox1.Height - Convert.ToInt16(lines[i].StartPoint.Y) - ellipseDiameter / 2,
+                _drawArea.FillEllipse(Brushes.Blue, Convert.ToInt16(lines[i].StartPoint.X)-ellipseDiameter/2,
+                    pictureBox1.Height - Convert.ToInt16(lines[i].StartPoint.Y)-ellipseDiameter/2,
                     ellipseDiameter,
                     ellipseDiameter);
 
@@ -273,12 +270,11 @@ namespace SI
         public void DrawResult(Result result)
         {
             DrawLines(_lines);
-
         }
 
         public void PrintTours(Result result)
         {
-            WriteLine("Wygenerowane trasy to:");
+            WriteLine("Najkrótsze trasy to:");
             StringBuilder sb = new StringBuilder();
             string tour;
             for (int i = 0; i < result.Tour.Rows.Count; i++)
@@ -294,14 +290,18 @@ namespace SI
             WriteLine(sb.ToString());
         }
 
-//        private void DrawConnections(Result result)
-//        {
-//            for (int i = 0; i < result.Tour.Rows.Count; i++)
-//            {
-//                _drawArea.DrawLine(Pens.DeepPink,
-//                    Convert.ToInt16(result.Tour.));
-//            }
-//        }
+        public void DrawConnections(Result result)
+        {
+            for (int i = 0; i < result.Tour.Columns.Count-1; i++)
+            {
+                _drawArea.DrawLine(Pens.DeepPink,
+                    Convert.ToInt16(_lines[result.Tour.Rows[0].Field<Byte>(i)].StartPoint.X),
+                    Convert.ToInt16(pictureBox1.Height - _lines[result.Tour.Rows[0].Field<Byte>(i)].StartPoint.Y),
+                    Convert.ToInt16(_lines[result.Tour.Rows[0].Field<Byte>(i+1)].StartPoint.X),
+                    Convert.ToInt16(pictureBox1.Height - _lines[result.Tour.Rows[0].Field<Byte>(i+1)].StartPoint.Y)
+                    );
+            }
+        }
         
     }
 }

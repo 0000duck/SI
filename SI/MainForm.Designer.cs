@@ -32,13 +32,12 @@
             this.labelNazwaPliku = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.startLineComboBox = new System.Windows.Forms.ComboBox();
             this.LosujBT = new System.Windows.Forms.Button();
             this.numberOfRandomLinesComboBox = new System.Windows.Forms.ComboBox();
-            this.chooseStartPointCheckBox = new System.Windows.Forms.CheckBox();
             this.calculate = new System.Windows.Forms.Button();
             this.AlgorithmComboBox = new System.Windows.Forms.ComboBox();
-            this.costLabel = new System.Windows.Forms.Label();
+            this.startLineComboBox = new System.Windows.Forms.ComboBox();
+            this.chooseStartPointCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,15 +85,6 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // startLineComboBox
-            // 
-            this.startLineComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.startLineComboBox.FormattingEnabled = true;
-            this.startLineComboBox.Location = new System.Drawing.Point(472, 77);
-            this.startLineComboBox.Name = "startLineComboBox";
-            this.startLineComboBox.Size = new System.Drawing.Size(48, 21);
-            this.startLineComboBox.TabIndex = 4;
-            // 
             // LosujBT
             // 
             this.LosujBT.Location = new System.Drawing.Point(493, 25);
@@ -128,16 +118,6 @@
             this.numberOfRandomLinesComboBox.Size = new System.Drawing.Size(48, 21);
             this.numberOfRandomLinesComboBox.TabIndex = 6;
             // 
-            // chooseStartPointCheckBox
-            // 
-            this.chooseStartPointCheckBox.AutoSize = true;
-            this.chooseStartPointCheckBox.Location = new System.Drawing.Point(356, 81);
-            this.chooseStartPointCheckBox.Name = "chooseStartPointCheckBox";
-            this.chooseStartPointCheckBox.Size = new System.Drawing.Size(110, 17);
-            this.chooseStartPointCheckBox.TabIndex = 7;
-            this.chooseStartPointCheckBox.Text = "Zablokuj Start na:";
-            this.chooseStartPointCheckBox.UseVisualStyleBackColor = true;
-            // 
             // calculate
             // 
             this.calculate.Location = new System.Drawing.Point(356, 104);
@@ -158,31 +138,43 @@
             this.AlgorithmComboBox.TabIndex = 9;
             this.AlgorithmComboBox.SelectedIndexChanged += new System.EventHandler(this.methodComboBox_SelectedIndexChanged);
             // 
-            // costLabel
+            // startLineComboBox
             // 
-            this.costLabel.AutoSize = true;
-            this.costLabel.Location = new System.Drawing.Point(574, 113);
-            this.costLabel.Name = "costLabel";
-            this.costLabel.Size = new System.Drawing.Size(28, 13);
-            this.costLabel.TabIndex = 10;
-            this.costLabel.Text = "Cost";
+            this.startLineComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.startLineComboBox.Enabled = false;
+            this.startLineComboBox.FormattingEnabled = true;
+            this.startLineComboBox.Location = new System.Drawing.Point(472, 77);
+            this.startLineComboBox.Name = "startLineComboBox";
+            this.startLineComboBox.Size = new System.Drawing.Size(48, 21);
+            this.startLineComboBox.TabIndex = 4;
+            // 
+            // chooseStartPointCheckBox
+            // 
+            this.chooseStartPointCheckBox.AutoSize = true;
+            this.chooseStartPointCheckBox.Enabled = false;
+            this.chooseStartPointCheckBox.Location = new System.Drawing.Point(356, 81);
+            this.chooseStartPointCheckBox.Name = "chooseStartPointCheckBox";
+            this.chooseStartPointCheckBox.Size = new System.Drawing.Size(110, 17);
+            this.chooseStartPointCheckBox.TabIndex = 7;
+            this.chooseStartPointCheckBox.Text = "Zablokuj Start na:";
+            this.chooseStartPointCheckBox.UseVisualStyleBackColor = true;
+            this.chooseStartPointCheckBox.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 399);
-            this.Controls.Add(this.costLabel);
             this.Controls.Add(this.AlgorithmComboBox);
             this.Controls.Add(this.calculate);
-            this.Controls.Add(this.chooseStartPointCheckBox);
             this.Controls.Add(this.numberOfRandomLinesComboBox);
             this.Controls.Add(this.LosujBT);
-            this.Controls.Add(this.startLineComboBox);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelNazwaPliku);
             this.Controls.Add(this.openFile);
+            this.Controls.Add(this.chooseStartPointCheckBox);
+            this.Controls.Add(this.startLineComboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -202,12 +194,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button LosujBT;
         private System.Windows.Forms.ComboBox numberOfRandomLinesComboBox;
-        public System.Windows.Forms.CheckBox chooseStartPointCheckBox;
-        public System.Windows.Forms.ComboBox startLineComboBox;
         private System.Windows.Forms.Button calculate;
         public System.Windows.Forms.ComboBox AlgorithmComboBox;
-        public System.Windows.Forms.Label costLabel;
         public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.ComboBox startLineComboBox;
+        public System.Windows.Forms.CheckBox chooseStartPointCheckBox;
     }
 }
 
