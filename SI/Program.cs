@@ -38,6 +38,7 @@ namespace SI
 
             Form.WriteLine("Gotowe!");
             Form.DrawResult(_result);
+            Form.PrintTours(_result);
 
         }
 

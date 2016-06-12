@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Text;
 using System.Windows.Forms;
 using SI.Constructs;
 using SI.Exceptions;
@@ -274,18 +276,32 @@ namespace SI
 
         }
 
-        public void DrawConnections()
+        public void PrintTours(Result result)
         {
-            throw new NotImplementedException("Draw Connections");
+            WriteLine("Wygenerowane trasy to:");
+            StringBuilder sb = new StringBuilder();
+            string tour;
+            for (int i = 0; i < result.Tour.Rows.Count; i++)
+            {
+                tour = null;
+                for (int j = 0; j < result.Tour.Columns.Count; j++)
+                {
+                     tour += string.Format("P" + result.Tour.Rows[i].Field<byte>(j).ToString() + "  ");
+                }
+                tour += string.Format(",  Koszt: " + result.TourCost.Rows[i].Field<short>(0));
+                sb.AppendLine(tour);
+            }
+            WriteLine(sb.ToString());
         }
 
-        //        private void DrawConnections(Result result)
-        //        {
-        //            for (int i = 0; i < result.Tour.Rows.Count; i++)
-        //            {
-        //                _drawArea.DrawLine(_lines);
-        //            }
-        //        }
-        //
+//        private void DrawConnections(Result result)
+//        {
+//            for (int i = 0; i < result.Tour.Rows.Count; i++)
+//            {
+//                _drawArea.DrawLine(Pens.DeepPink,
+//                    Convert.ToInt16(result.Tour.));
+//            }
+//        }
+        
     }
 }
