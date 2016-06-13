@@ -5,7 +5,6 @@ namespace SI.Constructs
 {
     public class Result
     {
-
         public DataTable Tour { get; private set; }
         public DataTable TourCost { get; private set; }
 
@@ -35,23 +34,5 @@ namespace SI.Constructs
             Tour.Rows.Add(workRow);
         }
 
-        public void Trim()
-        {
-            double tmpLowestValue = TourCost.Rows[TourCost.Rows.Count - 1].Field<short>(0);
-            var loop = true;
-
-            while (loop)
-            {
-                if (TourCost.Rows[0].Field<short>(0) > tmpLowestValue)
-                {
-                    Tour.Rows[0].Delete();
-                    TourCost.Rows[0].Delete();
-                }
-                else
-                {
-                    loop = false;
-                }
-            }
-        }
     }
 }
