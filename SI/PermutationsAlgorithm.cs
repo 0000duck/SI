@@ -27,6 +27,8 @@ namespace SI
 
             CalculatePermutations(_result, lines);
 
+            TrimResult(_result);
+
 
             _permutations.Trim();
 
