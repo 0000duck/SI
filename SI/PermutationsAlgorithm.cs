@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using SI.Constructs;
 
 namespace SI
@@ -26,10 +27,30 @@ namespace SI
 
             CalculatePermutations(_result, lines);
 
-            _result.Trim();
+//            _result.Trim();
+            TrimResult(_result);
 
             _permutations.Trim();
 
+        }
+
+        private void TrimResult(Result result)
+        {
+            double tmpLowestValue = result.TourCost.Rows[result.TourCost.Rows.Count - 1].Field<short>(0);
+            var loop = true;
+
+            while (loop)
+            {
+                if (result.TourCost.Rows[0].Field<short>(0) > tmpLowestValue)
+                {
+                    result.Tour.Rows[0].Delete();
+                    result.TourCost.Rows[0].Delete();
+                }
+                else
+                {
+                    loop = false;
+                }
+            }
         }
 
         public override Result GetResult()
