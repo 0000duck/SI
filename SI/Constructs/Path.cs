@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace SI.Constructs
 {
-    public class Permutation : List<double>, IComparable<Permutation>
+    public class Path : List<double>, IComparable<Path>
     {
         public double Cost { get; set; }
 
-        public int CompareTo(Permutation other)
+        public int CompareTo(Path other)
         {
 
             if (Math.Abs(this.Cost - other.Cost) < 0.01) return 0;

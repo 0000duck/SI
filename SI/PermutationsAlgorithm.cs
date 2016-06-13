@@ -10,15 +10,12 @@ namespace SI
 
         private int[] _tour;
         private int _linesCount;
-        private Result _result;
-        private Permutations _permutations;
-
-
+        private Paths _paths;
 
         public PermutationsAlgorithm(Lines lines)
         {
             _linesCount = lines.Count;
-            _permutations = new Permutations(_linesCount);
+            _paths = new Paths(_linesCount);
         }
 
         public override void Execute(Lines lines)
@@ -28,23 +25,22 @@ namespace SI
             CalculatePermutations(_result, lines);
 
             TrimResult(_result);
-
-
-            _permutations.Trim();
+            
+            _paths.Trim();
 
         }
 
         private void TrimResult(Result result)
         {
-            double tmpLowestValue = result.TourCost.Rows[result.TourCost.Rows.Count - 1].Field<short>(0);
+            double tmpLowestValue = result.PathCost.Rows[result.PathCost.Rows.Count - 1].Field<short>(0);
             var loop = true;
 
             while (loop)
             {
-                if (result.TourCost.Rows[0].Field<short>(0) > tmpLowestValue)
+                if (result.PathCost.Rows[0].Field<short>(0) > tmpLowestValue)
                 {
-                    result.Tour.Rows[0].Delete();
-                    result.TourCost.Rows[0].Delete();
+                    result.Path.Rows[0].Delete();
+                    result.PathCost.Rows[0].Delete();
                 }
                 else
                 {
@@ -53,14 +49,8 @@ namespace SI
             }
         }
 
-        public override Result GetResult()
-        {
-            return _result;
-        }
-
         private Result InitializeProperties(Lines lines)
         {
-
             var result = new Result(_linesCount);
 
             _tour = new int[_linesCount + 1];
@@ -119,16 +109,16 @@ namespace SI
 
         private void AddPermutation(double tmpPermutationCost, Result result)
         {
-            var permutation = new Permutation();
+            var permutation = new Path();
             for (int i=1;i<_tour.Length;i++)
             {
                 permutation.Add(_tour[i]);
                 permutation.Cost = tmpPermutationCost;
             }
-            _permutations.Add(permutation);
+            _paths.Add(permutation);
 
 
-            var workRow = result.Tour.NewRow();
+            var workRow = result.Path.NewRow();
             for (var signNumber = 0; signNumber < _linesCount; signNumber++)
             {
                 workRow[signNumber] = _tour[signNumber + 1];

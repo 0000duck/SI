@@ -1,11 +1,11 @@
 namespace SI.Constructs
 {
-    public class Punkt
+    public class Point
     {
         public double X { get; set; }
         public double Y { get; set; }
 
-        public Punkt(double xCoordinate, double yCoordinate )
+        public Point(double xCoordinate, double yCoordinate )
         {
             X = xCoordinate;
             Y = yCoordinate;

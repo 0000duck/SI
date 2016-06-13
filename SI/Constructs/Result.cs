@@ -5,33 +5,33 @@ namespace SI.Constructs
 {
     public class Result
     {
-        public DataTable Tour { get; private set; }
-        public DataTable TourCost { get; private set; }
+        public DataTable Path { get; private set; }
+        public DataTable PathCost { get; private set; }
 
 
         public Result(int linesCount)
         {
-            Tour = new DataTable();
-            TourCost = new DataTable();
+            Path = new DataTable();
+            PathCost = new DataTable();
             
             for (var i = 0; i < linesCount; i++)
             {
-                Tour.Columns.Add(i.ToString(), typeof(byte));
+                Path.Columns.Add(i.ToString(), typeof(byte));
             }
 
-            TourCost.Columns.Add("cost", typeof(short));
+            PathCost.Columns.Add("cost", typeof(short));
         }
 
         public void AddTour(double tourCost, int [] tour)
         {
-            TourCost.Rows.Add(tourCost);
+            PathCost.Rows.Add(tourCost);
 
-            var workRow = Tour.NewRow();
+            var workRow = Path.NewRow();
             for (var signNumber = 0; signNumber < tour.Length - 1; signNumber++)
             {
                 workRow[signNumber] = tour[signNumber + 1];
             }
-            Tour.Rows.Add(workRow);
+            Path.Rows.Add(workRow);
         }
 
     }

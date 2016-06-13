@@ -24,24 +24,23 @@ namespace SI
             switch (Form.AlgorithmComboBox.SelectedIndex)
             {
                 case 0:
-                    Form.WriteLine("Uruchamiam algorytm permutacyjny:");
+                    Form.WriteLine("Starting permutation algorithm:");
                     break;
             }
 
             time.Stop();
-            Form.WriteLine("Algorytm zakończył działanie!");
-            Form.WriteLine("Czas obliczeń: " + time.ElapsedMilliseconds + " ms");
+            Form.WriteLine("Counting finished!");
+            Form.WriteLine("Time: " + time.ElapsedMilliseconds + " ms");
 
             _result = algorithm.GetResult();
 
-            Form.WriteLine("Gotowe!");
             Form.DrawResult(_result);
             Form.PrintTours(_result);
             Form.DrawConnections(_result);
         }
 
         /// <summary>
-        /// Główny punkt wejścia dla aplikacji.
+        /// Main entry.
         /// </summary>
         [STAThread]
         private static void Main()

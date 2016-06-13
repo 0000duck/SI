@@ -48,9 +48,9 @@
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
     <Compile Include="Constructs\Algorithms.cs" />
-    <Compile Include="Constructs\Permutation.cs" />
-    <Compile Include="Constructs\Permutations.cs" />
-    <Compile Include="Exceptions\NoFileException.cs" />
+    <Compile Include="Constructs\Path.cs" />
+    <Compile Include="Constructs\Paths.cs" />
+    <Compile Include="Exceptions\NoFieldsException.cs" />
     <Compile Include="Extruder.cs" />
     <Compile Include="Constructs\Line.cs" />
     <Compile Include="Constructs\Lines.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="PermutationsAlgorithm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Constructs\Punkt.cs" />
+    <Compile Include="Constructs\Point.cs" />
     <Compile Include="Constructs\Result.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

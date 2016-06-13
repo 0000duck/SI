@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SI.Exceptions
 {
-    class NoFileException : Exception
+    class NoFieldsException : Exception
     {
         private string _message;
         public override string Message
@@ -18,12 +18,12 @@ namespace SI.Exceptions
             }
         }
 
-        public NoFileException()
+        public NoFieldsException()
         {
-            _message = "No File";
+            _message = "No fields";
         }
 
-        public NoFileException(string message)
+        public NoFieldsException(string message)
         {
             _message = message;
         }

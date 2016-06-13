@@ -10,7 +10,7 @@ namespace SI
     internal class Extruder
     {
         private const string ZnacznikPoczatkuX = " 10";
-        private const string ZnacznikKoncaX = " 11";//wartość " 11" to X1
+        private const string ZnacznikKoncaX = " 11";    //value" 11" is X1
         private const string ZnacznikPoczatkuY = " 20";
         private const string ZnacznikKoncaY = " 21";
         private const byte   LinesToSearch = 13;
@@ -30,7 +30,6 @@ namespace SI
         public Lines ExtrudeLines(string path)
         {
             LoadFile(path);
-//            _lines.Clear();
             var lines = FindLines();
             lines.SetNearestToCenterAsP0();
             lines.CalculateDistances();
@@ -63,14 +62,11 @@ namespace SI
             try
             {
                 for (var i = 0; i < _dxfContent.Length; i++)
-                    //w każdej iteracji podaje do pętli kolejny wiersz z tablicy zawierającej zawartość pliku *.dxf
                 {
                     if (_dxfContent[i] == "SILIKON" || _dxfContent[i] == "Silikon" || _dxfContent[i] == "silikon")
-                        //pętla szuka numerów lini z nazwą warstwy tzn szukamy X1
                     {
-                        for (var j = i; j < i + LinesToSearch; j++) //po znalezieniu warstwy szukam wystapienia " 10" 
+                        for (var j = i; j < i + LinesToSearch; j++)  
                         {
-                            //oznaczajacego wspolrzedna X0 i pobieram nastepny wiersz
                             if (_dxfContent[j] == ZnacznikPoczatkuX)
                             {
                                 xStart = Math.Round(Convert.ToDouble(_dxfContent[j + 1]), 1);
@@ -95,7 +91,7 @@ namespace SI
             }
             catch (IndexOutOfRangeException ex)
             {
-                MessageBox.Show(@"Najpierw otwórz plik");
+                MessageBox.Show(@"Open file first.");
             }
             catch (Exception ex)
             {
@@ -105,22 +101,14 @@ namespace SI
 
         }
 
-        //        public Result GetResult()
-        //        {
-        //            var result = new Result(Lines.Count);
-        ////            result.Calculate();
-        //            return result;
-        //        }
-        //
-
-        public Lines GetRandomLines(int countOfLines, int graphWidth, int graphHeight)
+        public Lines GetRandomLines(int countOfFields, int graphWidth, int graphHeight)
         {
             var randomLines = new Lines();
             const int bufferToFrame = 30;
-            var numberOfPoints = countOfLines + 3;
+//            var numberOfPoints = countOfFields + 6;
             var rand = new Random();
 
-            for (var i = 0; i < numberOfPoints; i++)
+            for (var i = 0; i < countOfFields; i++)
             {
                 var startX = rand.Next(0, graphWidth - bufferToFrame);
                 var endX = rand.Next(0, graphWidth - bufferToFrame);

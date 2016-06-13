@@ -3,22 +3,22 @@ using System.IO;
 
 namespace SI.Constructs
 {
-    public class Permutations : List<Permutation>
+    public class Paths : List<Path>
     {
         private readonly int _permutationsLength;
 
-        public Permutations(int permutationsLength)
+        public Paths(int permutationsLength)
         {
             _permutationsLength = permutationsLength;
         }
 
-        public new void Add(Permutation item)
+        public new void Add(Path item)
         {
             if (item.Count == _permutationsLength)
                 base.Add(item);
             else
             {
-                throw new InvalidDataException("Permutations have wrong length");
+                throw new InvalidDataException("Paths have wrong length");
             }
         }
 
