@@ -8,6 +8,7 @@ using SI.Constructs;
 using SI.Exceptions;
 using Point = System.Drawing.Point;
 
+
 namespace SI
 {
     public partial class MainForm : Form
